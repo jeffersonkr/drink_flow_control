@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_content %}
+<div class="col-sm-6 col-lg-6 col-lg-offset-3">
+	<div id="register-wraper">
+		<form id="register-form" method="POST" class="form">
+			{% csrf_token %}
+			<legend>Insira um código</legend>
+		
+			<div class="body">
+				<!-- first name -->
+				<input name="primeiro_digito" class="input-huge one_number" maxlength="1" type="number" required>
+				<input name="segundo_digito" class="input-huge one_number" maxlength="1" type="number" required>
+				<input name="terceiro_digito" class="input-huge one_number" maxlength="1" type="number" required>
+				<input name="quarto_digito" class="input-huge one_number" maxlength="1" type="number" required>
+			</div>
+		
+			<div class="footer py-30">
+				<button type="submit" class="btn btn-success">Entrar</button>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" src="{% static 'js/input_length.js' %}"></script>
+{% endblock body_content %}
