@@ -837,6 +837,11 @@ input[type=number] {
 	padding-top:30px;
 }
 
+.errorlist li, ul{
+	text-align: left;
+	font-size: 12px;
+	color: rgba(182, 55, 55, 0.726)
+}
 
 /**********Media Styles**********/   
 
