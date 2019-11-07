@@ -14,10 +14,6 @@ class User(models.Model):
     def __str__(self):
         return self.name
 
-    @property
-    def get_id(self):
-        return self.id
-
     class Meta:
         ordering = ["name"]
         verbose_name_plural = "Users"
