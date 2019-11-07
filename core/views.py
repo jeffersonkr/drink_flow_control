@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.conf import settings
 from .forms.user_form import UserForm
 from .models.user import User
 
@@ -54,6 +55,7 @@ def user(request, user_id):
         'user_created': user.created_at,
         'user_updated': user.updated_at,
         'user_code_number': user.code_number,
+        'user_photo': user.photo,
     }
 
     return render(request, 'user.html', context)
