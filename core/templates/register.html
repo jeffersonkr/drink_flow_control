@@ -6,12 +6,14 @@
 		<form id="register-form" method="POST" class="form">
 			{% csrf_token %}
 			<legend>Registrar</legend>
-		
+			
 			<div class="body">
 				<label for="name">Nome</label>
-				<input name="name" class="input-huge" type="text">
+				<input name="name" class="input-huge" type="text" placeholder="Nome completo">
+				{{ error_nome }}
 				<label for="cellphone">Celular</label>
-				<input name="cellphone" class="input-huge" type="tel">
+				<input name="cellphone" class="input-huge" type="tel" placeholder="ex: +5511941040588">
+				{{ error_cel }}
 			</div>
 		
 			<div class="footer py-30">
