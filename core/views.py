@@ -41,6 +41,7 @@ def cadastro(request, code_number):
                     name=name, cellphone=cellphone, code_number=code_number).save()
             except IntegrityError as e:
                 context = {
+                    'title': 'Cadastro',
                     'error_cel': f"""<ul class='errorlist'>
                                         <li>O numero informado já possui cadastro</li> 
                                     </ul>""",
@@ -59,7 +60,7 @@ def cadastro(request, code_number):
             return render(request, 'register.html', context)
 
 
-    return render(request, 'register.html')
+    return render(request, 'register.html', {'title': 'Cadastro'})
 
 def user(request, user_id):
     user = User.objects.get(id=user_id)
