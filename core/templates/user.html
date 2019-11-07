@@ -32,7 +32,11 @@
 				<div id="register-info">
 					<div class="cont2">
 						<div class="thumbnail">
-							<img src="{% static 'images/face.jpg' %}" alt="Marcel Newman" class="img-circle">
+							{% if user_photo %}
+								<img src='{{ user_photo }}' alt="{{ user_name }}" class="img-circle">
+							{% else %}
+								<img src="{% static 'images/face.jpg' %}" alt="{{ user_name }}" class="img-circle">
+							{% endif %}
 						</div><!-- /thumbnail -->
 						<h2> {{ user_name }}</h2>
 					</div>
@@ -52,7 +56,7 @@
 					</div><!-- /inner row -->
 					<hr>
 					<div class="cont2">
-						<h2>Choose Your Option</h2>
+						<h2>Relátorios</h2>
 					</div>
 					<br>
 						<div class="info-user2">
