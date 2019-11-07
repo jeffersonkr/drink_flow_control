@@ -33,15 +33,17 @@
 						</div>
 					</div><!-- /inner row -->
 					<hr>
-					<div class="cont2">
-						<h2>Informes</h2>
-					</div>
+					<div class="row">
 					<div class="col-lg-12">
-						<div class="cont3 py-30">
-							<p><ok>Vazão</ok> {{ user_name }}</p>
-							<p><ok>Faltante beber</ok> {{ user_cellphone }}</p>
-							<p><ok>Total diária</ok> {{ user_cellphone }}</p>
+						<div class="cont3">
+							<p class="text-center">
+								<ok>Olá </ok>{{ user_name }}
+								<ok> sejá bem vindo!<br> Aperte no relógio para selecionar <wbr>a quantidade da água.</ok></p>
+							<p><ok>Quantidade de água</ok> </p>
+							<p><ok>Faltante beber</ok> </p>
+							<p><ok>Total diária</ok> </p>
 							<br/><br/>
+							<p class="text-center"><ok></ok></p>
 						</div>
 					</div>
 					<div class="info-user2">
@@ -51,15 +53,38 @@
 						<a href="{% url 'edit' user_code_number %}">
 							<span aria-hidden="true" class="li_pen fs1"></span>
 						</a>
+						<span aria-hidden="true" data-toggle="modal" data-target="#set_time_modal" class="li_clock fs1"></span>
 						<a href="{% url 'login' %}">
 							<span aria-hidden="true" alt="sair" class="li_lock fs1"></span>
 						</a>
 					</div>
+					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="set_time_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title  text-center" id="exampleModalLabel">Escolha a quantidade de água.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <button id="set_clock_300" type="button" class="btn btn-primary" data-dismiss="modal">300ml - 1 Copo</button>
+		<button id="set_clock_1000" type="button" class="btn btn-primary" data-dismiss="modal">1000ml - 1 Garrafa</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/timer.js' %}"></script>
 {% endblock body_content %}}
