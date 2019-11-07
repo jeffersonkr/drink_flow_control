@@ -45,9 +45,15 @@
 						</div>
 					</div>
 					<div class="info-user2">
-						<span aria-hidden="true" class="li_camera fs1"></span>
-						<span aria-hidden="true" class="li_pen fs1"></span>
-						<span aria-hidden="true" alt="sair" class="li_lock fs1"></span>
+						<a href="{% url 'take_photo' user_code_number %}">
+							<span aria-hidden="true" class="li_camera fs1"></span>
+						</a>
+						<a href="{% url 'edit' user_code_number %}">
+							<span aria-hidden="true" class="li_pen fs1"></span>
+						</a>
+						<a href="{% url 'login' %}">
+							<span aria-hidden="true" alt="sair" class="li_lock fs1"></span>
+						</a>
 					</div>
 				</div>
 			</div>
