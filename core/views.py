@@ -12,13 +12,18 @@ def login(request):
         segundo_digito = request.POST.get('segundo_digito')
         terceiro_digito = request.POST.get('terceiro_digito')
         quarto_digito = request.POST.get('quarto_digito')
-
         numero = map(str, [primeiro_digito, segundo_digito, terceiro_digito, quarto_digito])
         code_number = "".join(list(numero))
-        if User.objects.get(code_number=code_number):
+
+        try:
+            user = User.objects.get(code_number=code_number)
+        except User.DoesNotExist:
+            user = None
+
+        if user:
             return redirect('user', User.objects.get(code_number=code_number).id)
         else:
-            return redirect('cadastro', code_number, {'title': 'Acesso'})
+            return redirect('cadastro', code_number)
         
     return render(request, 'login.html')
 
