@@ -14,7 +14,7 @@ def login(request):
 
         numero = map(str, [primeiro_digito, segundo_digito, terceiro_digito, quarto_digito])
         code_number = "".join(list(numero))
-        if code_number == '1234':
+        if User.objects.get(code_number=code_number):
             return redirect('user')
         else:
             return redirect('cadastro', code_number)
