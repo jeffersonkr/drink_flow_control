@@ -178,3 +178,6 @@ dmypy.json
 .history
 
 # End of https://www.gitignore.io/api/python,django,visualstudiocode
+
+#migrations
+*migrations
