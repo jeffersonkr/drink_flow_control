@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
+from django.db import IntegrityError
 from .forms.user_form import UserForm
 from .models.user import User
 
@@ -35,14 +36,22 @@ def cadastro(request, code_number):
         if form.is_valid():
             name = form.cleaned_data['name']
             cellphone = form.cleaned_data['cellphone']
-            User.objects.create(
-                name=name, cellphone=cellphone, code_number=code_number).save()
-            
+            try:
+                User.objects.create(
+                    name=name, cellphone=cellphone, code_number=code_number).save()
+            except IntegrityError as e:
+                context = {
+                    'error_cel': f"""<ul class='errorlist'>
+                                        <li>O numero informado já possui cadastro</li> 
+                                    </ul>""",
+                    }
+                return  render(request, 'register.html', context)
+
             return redirect('login')
 
         else:
             context = {
-                'error_nome': form.errors.get("nome", ""),
+                'error_nome': form.errors.get("name", ""),
                 'error_cel': form.errors.get("cellphone", ""),
                 'title': 'Cadastro'
                 }
