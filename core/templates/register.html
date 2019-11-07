@@ -13,7 +13,9 @@
 				{{ error_nome }}
 				<label for="cellphone">Celular</label>
 				<input name="cellphone" class="input-huge" type="tel" placeholder="ex: +5511941040588">
+				{% autoescape off %}
 				{{ error_cel }}
+				{% endautoescape %}
 			</div>
 		
 			<div class="footer py-30">
