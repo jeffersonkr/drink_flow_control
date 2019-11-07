@@ -22,8 +22,10 @@ def login(request):
 
         if user:
             return redirect('user', User.objects.get(code_number=code_number).id)
-        else:
+        elif not user and len(code_number) == 4:
             return redirect('cadastro', code_number)
+        elif len(code_number) > 4 or len(code_number) < 4:
+            return render(request, 'login.html', {'error': 'Verifique o código: deve conter 4 dígitos :)'})
         
     return render(request, 'login.html')
 
