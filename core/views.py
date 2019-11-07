@@ -76,3 +76,36 @@ def user(request, user_id):
     }
 
     return render(request, 'user.html', context)
+
+def edit(request, code_number):
+    user = User.objects.get(code_number=code_number)
+    context = {
+        'title': 'Editar',
+        'user_name': user.name,
+        'user_cellphone': user.cellphone,
+        }
+    
+    if request.POST:
+        form = UserForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            cellphone = form.cleaned_data['cellphone']
+            try:
+                user.name = name
+                user.cellphone = cellphone
+                user.save()
+            except IntegrityError as e:
+                context = {
+                    'title': 'Cadastro',
+                    'error_cel': f"""<ul class='errorlist'>
+                                        <li>O numero informado já possui cadastro</li> 
+                                    </ul>""",
+                    }
+                return  render(request, 'register.html', context)
+
+        return redirect('user', user.id)
+
+    return render(request, 'register.html', context)
+
+def take_photo(request, user_code_number):
+    return render(request, 'edit.html')
