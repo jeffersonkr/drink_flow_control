@@ -1,28 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 {% block body_content %}
-{% comment %} <div class="navbar-nav navbar-inverse navbar-fixed-top">
-	<div class="container">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="index.html"><img src="{% static 'images/logo30.png' %}" alt=""> BLOCKS Dashboard</a>
-	</div> 
-		<div class="navbar-collapse collapse">
-		<ul class="nav navbar-nav">
-			<li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>                            
-			<li><a href="tables.html"><i class="icon-th icon-white"></i> Tables</a></li>
-			<li><a href="login.html"><i class="icon-lock icon-white"></i> Login</a></li>
-			<li class="active"><a href="user.html"><i class="icon-user icon-white"></i> User</a></li>
-
-		</ul>
-		</div><!--/.nav-collapse -->
-	</div>
-</div> {% endcomment %}
-
 <div class="container">
 	<div class="row">
 
@@ -56,19 +34,20 @@
 					</div><!-- /inner row -->
 					<hr>
 					<div class="cont2">
-						<h2>Relátorios</h2>
+						<h2>Informes</h2>
 					</div>
-					<br>
-						<div class="info-user2">
-							<span aria-hidden="true" class="li_user fs1"></span>
-							<span aria-hidden="true" class="li_settings fs1"></span>
-							<span aria-hidden="true" class="li_mail fs1"></span>
-							<span aria-hidden="true" class="li_key fs1"></span>
-							<span aria-hidden="true" class="li_lock fs1"></span>
-							<span aria-hidden="true" class="li_pen fs1"></span>
+					<div class="col-lg-12">
+						<div class="cont3 py-30">
+							<p><ok>Vazão</ok> {{ user_name }}</p>
+							<p><ok>Faltante beber</ok> {{ user_cellphone }}</p>
+							<p><ok>Total diária</ok> {{ user_cellphone }}</p>
 						</div>
-
-					
+					</div>
+					<div class="info-user2">
+						<span aria-hidden="true" class="li_camera fs1"></span>
+						<span aria-hidden="true" class="li_pen fs1"></span>
+						<span aria-hidden="true" alt="sair" class="li_lock fs1"></span>
+					</div>
 				</div>
 			</div>
 
