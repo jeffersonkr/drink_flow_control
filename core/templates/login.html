@@ -8,7 +8,12 @@
 			<legend>Insira um código</legend>
 		
 			<div class="body">
-				<ul class="errorlist"><li style="text-align:center;">{{ error }}</li></ul>
+				<ul class="errorlist">
+					{% if error %}
+						<li style="text-align:center;">{{ error }}</li>
+					{% else %}
+					{% endif %}
+				</ul>
 				<input name="primeiro_digito" class="input-huge one_number" maxlength="1" type="number" required>
 				<input name="segundo_digito" class="input-huge one_number" maxlength="1" type="number" required>
 				<input name="terceiro_digito" class="input-huge one_number" maxlength="1" type="number" required>
