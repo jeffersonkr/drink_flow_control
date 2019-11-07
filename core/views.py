@@ -15,9 +15,9 @@ def login(request):
         numero = map(str, [primeiro_digito, segundo_digito, terceiro_digito, quarto_digito])
         code_number = "".join(list(numero))
         if User.objects.get(code_number=code_number):
-            return redirect('user')
+            return redirect('user', User.objects.get(code_number=code_number).id)
         else:
-            return redirect('cadastro', code_number)
+            return redirect('cadastro', code_number, {'title': 'Acesso'})
         
     return render(request, 'login.html')
 
@@ -35,7 +35,8 @@ def cadastro(request, code_number):
         else:
             context = {
                 'error_nome': form.errors.get("nome", ""),
-                'error_cel': form.errors.get("cellphone", "")
+                'error_cel': form.errors.get("cellphone", ""),
+                'title': 'Cadastro'
                 }
 
             return render(request, 'register.html', context)
@@ -43,8 +44,16 @@ def cadastro(request, code_number):
 
     return render(request, 'register.html')
 
-def user(request):
+def user(request, user_id):
+    user = User.objects.get(id=user_id)
+
     context = {
+        'title': 'Perfil',
+        'user_name': user.name,
+        'user_cellphone': user.cellphone,
+        'user_created': user.created_at,
+        'user_updated': user.updated_at,
+        'user_code_number': user.code_number,
     }
 
     return render(request, 'user.html', context)
