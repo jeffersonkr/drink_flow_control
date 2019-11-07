@@ -2,22 +2,22 @@
 {% load static %}
 {% block body_content %}
 <div class="col-sm-6 col-lg-6 col-lg-offset-3">
-			<div id="register-wraper">
-				<form id="register-form" class="form">
-					<legend>Registrar</legend>
-				
-					<div class="body">
-						<!-- first name -->
-						<label for="name">Nome</label>
-						<input name="name" class="input-huge" type="text">
-						<label for="cellphone">Celular</label>
-						<input name="cellphone" class="input-huge" type="tel">
-					</div>
-				
-					<div class="footer py-30">
-						<button type="submit" class="btn btn-success">Register</button>
-					</div>
-				</form>
+	<div id="register-wraper">
+		<form id="register-form" method="POST" class="form">
+			{% csrf_token %}
+			<legend>Registrar</legend>
+		
+			<div class="body">
+				<label for="name">Nome</label>
+				<input name="name" class="input-huge" type="text">
+				<label for="cellphone">Celular</label>
+				<input name="cellphone" class="input-huge" type="tel">
 			</div>
-		</div>
+		
+			<div class="footer py-30">
+				<button type="submit" class="btn btn-success">Cadastrar</button>
+			</div>
+		</form>
+	</div>
+</div>
 {% endblock body_content %}
