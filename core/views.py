@@ -27,7 +27,8 @@ def cadastro(request, code_number):
         if form.is_valid():
             name = form.cleaned_data['name']
             cellphone = form.cleaned_data['cellphone']
-            User.objects.create(name=name, cellphone=cellphone).save()
+            User.objects.create(
+                name=name, cellphone=cellphone, code_number=code_number).save()
             
             return redirect('login')
 
