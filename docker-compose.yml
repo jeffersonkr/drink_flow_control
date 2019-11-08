@@ -11,13 +11,13 @@ services:
             - MYSQL_ROOT_PASSWORD=drinkwater
         volume:
 
-web:
-    build: 
-        context: .
-        dockerfile: django.dockerfile
-    ports:
-        - "8000:8000"
-    links:
-        - db
-    depends_on:
-        - db
+    web:
+        build: 
+            context: .
+            dockerfile: django.dockerfile
+        ports:
+            - "8000:8000"
+        links:
+            - db
+        depends_on:
+            - db
