@@ -1,26 +1,42 @@
 version: "3"
 services:
-    db:
-        restart: always
-        image: jsurf/rpi-mariadb
-        ports:
-            - '3306:3306'
-        environment:
-            - MYSQL_DATABASE=drink_db
-            - MYSQL_USER=admin
-            - MYSQL_PASSWORD=drinkwater
-            - MYSQL_ROOT_PASSWORD=drinkwater
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - "80:8000"
+      - "81:5000"
+    networks: 
+      - production-network
+    depends_on:
+      - "django"
+      - "db"
 
-    web:
-        restart: always
-        build: 
-            context: .
-            dockerfile: django.dockerfile
-        volumes:
-            - .:/home/pi/drink_flow_control
-        ports:
-            - "8000:8000"
-        links:
-            - db
-        depends_on:
-            - db
+  django:
+    build:
+      dockerfile: ./django.dockerfile
+      context: /home/pi/drink_flow_water
+    container_name: django
+    ports:
+      - "8000:8000"
+    depends_on:
+      - "db"
+    networks:
+      - production-network
+
+  db:
+    restart: always
+    image: jsurf/rpi-mariadb
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_DATABASE=drink_db
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=drinkwater
+      - MYSQL_ROOT_PASSWORD=drinkwater 
+    networks: 
+      - production-network
+  
+networks:
+  production-network:
+     driver: bridge

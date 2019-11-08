@@ -1,7 +1,7 @@
 FROM python:3
 MAINTAINER Jefferson Kwak <jeffersonkr@hotmail.com>
-COPY . /var/www
-WORKDIR /var/www/
+COPY . /home/pi/www
+WORKDIR /home/pi/www
 RUN pip3 install -r requirements.txt
 EXPOSE 8000
 CMD python3 manage.py collectstatic --noinput
