@@ -42,7 +42,7 @@ def cadastro(request, code_number):
             except IntegrityError as e:
                 context = {
                     'title': 'Cadastro',
-                    'error_cel': f"""<ul class='errorlist'>
+                    'error_cel': """<ul class='errorlist'>
                                         <li>O numero informado já possui cadastro</li> 
                                     </ul>""",
                     }
@@ -97,7 +97,7 @@ def edit(request, code_number):
             except IntegrityError as e:
                 context = {
                     'title': 'Cadastro',
-                    'error_cel': f"""<ul class='errorlist'>
+                    'error_cel': """<ul class='errorlist'>
                                         <li>O numero informado já possui cadastro</li> 
                                     </ul>""",
                     }
