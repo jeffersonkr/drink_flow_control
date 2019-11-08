@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
+from django.core.files import File
 from django.conf import settings
 from django.db import IntegrityError
 from .forms.user_form import UserForm
 from .models.user import User
-
-# Create your views here.
 
 
 def login(request):
@@ -107,5 +106,16 @@ def edit(request, code_number):
 
     return render(request, 'register.html', context)
 
-def take_photo(request, user_code_number):
-    return render(request, 'edit.html')
+def take_photo(request, code_number):
+    from picamera import PiCamera
+    user = User.objects.get(code_number=code_number)
+    photo_path = '/media/tmp/photo.jpg'
+    
+    with PiCamera() as camera:
+        time.sleep(3)
+        camera.capture(photo_path)
+
+    with open(photo_path, 'r') as photo:
+        user.photo.save(f'{user.name}.jpg', photo)
+
+    return redirect(request, 'user', user.id)
