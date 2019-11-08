@@ -1,6 +1,7 @@
 version: "3"
 services:
     db:
+        restart: always
         image: jsurf/rpi-mariadb
         ports:
             - '3306:3306'
@@ -11,9 +12,12 @@ services:
             - MYSQL_ROOT_PASSWORD=drinkwater
 
     web:
+        restart: always
         build: 
             context: .
             dockerfile: django.dockerfile
+        volumes:
+            - .:/home/pi/drink_flow_control
         ports:
             - "8000:8000"
         links:
