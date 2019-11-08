@@ -853,6 +853,12 @@ input[type=number] {
 
 /**********Media Styles**********/   
 
+@media (max-width: 500px){
+	#register-form input.input-huge, #register-form input.input-medium{
+		display: inline-block!important;
+	}
+}
+
 @media (max-width: 360px){
 /*Calendar Adsjustments*/
 .fc-header {margin-top:15px;}
