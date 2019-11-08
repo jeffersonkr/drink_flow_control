@@ -5,7 +5,7 @@
 	<div id="register-wraper">
 		<form id="register-form" method="POST" class="form">
 			{% csrf_token %}
-			<legend>Registrar</legend>
+			<legend>{{title}}</legend>
 			
 			<div class="body">
 				<label for="name">Nome</label>
@@ -19,7 +19,7 @@
 			</div>
 		
 			<div class="footer py-30">
-				<button type="submit" class="btn btn-success">Cadastrar</button>
+				<button type="submit" class="btn btn-success">{{title}}</button>
 			</div>
 		</form>
 	</div>

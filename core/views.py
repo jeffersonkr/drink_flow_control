@@ -53,13 +53,13 @@ def cadastro(request, code_number):
             context = {
                 'error_nome': form.errors.get("name", ""),
                 'error_cel': form.errors.get("cellphone", ""),
-                'title': 'Cadastro'
+                'title': 'Cadastrar'
                 }
 
             return render(request, 'register.html', context)
 
 
-    return render(request, 'register.html', {'title': 'Cadastro'})
+    return render(request, 'register.html', {'title': 'Cadastrar'})
 
 def user(request, user_id):
     user = User.objects.get(id=user_id)
