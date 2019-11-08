@@ -63,30 +63,8 @@
 	</div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="set_time_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title text-center" id="exampleModalCenterTitle">Escolha a quantidade de água.</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body text-center">
-				<button id="set_clock_300" type="button" class="btn btn-primary" data-dismiss="modal">300ml - 1 Copo</button>
-				<button id="set_clock_1000" type="button" class="btn btn-primary" data-dismiss="modal">1000ml - 1 Garrafa</button>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-			</div>
-		</div>
-	</div>
-</div>
+{% include 'modal_content.html' %}
+{% include "alert.html" %}
 
-<div class="alert alert-success text-center" role="alert" style="display:none;">
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<strong>Parábens!</strong> Continue assim, vamos nos hidratar!
-</div>
 <script src="{% static 'js/timer.js' %}"></script>
 {% endblock body_content %}}
