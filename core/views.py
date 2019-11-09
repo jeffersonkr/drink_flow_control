@@ -111,7 +111,7 @@ def take_photo(request, code_number):
     from datetime import datetime
 
     user = User.objects.get(code_number=code_number)
-    photo_path = '{0}/core/media/photo_{1}_{2}.jpg'.format(os.getcwd, user.name, datetime.now())
+    photo_path = '{0}/core/media/photo_{1}_{2}.jpg'.format(os.getcwd(), user.name, datetime.now())
     
     with PiCamera() as camera:
         time.sleep(3)
