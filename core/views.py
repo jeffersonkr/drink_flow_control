@@ -64,7 +64,6 @@ def cadastro(request, code_number):
 
 def user(request, user_id):
     user = User.objects.get(id=user_id)
-
     context = {
         'title': 'Perfil',
         'user_name': user.name,
@@ -72,7 +71,7 @@ def user(request, user_id):
         'user_created': user.created_at,
         'user_updated': user.updated_at,
         'user_code_number': user.code_number,
-        'user_photo': user.photo,
+        'user_photo': user.photo.split('/')[-1],
     }
 
     return render(request, 'user.html', context)
