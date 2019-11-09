@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import IntegrityError
 from .forms.user_form import UserForm
 from .models.user import User
-
+import time
 
 def login(request):
     if request.POST:
