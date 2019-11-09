@@ -115,6 +115,7 @@ def take_photo(request, code_number):
                     os.getcwd(), user.name, datetime.now())
     
     with PiCamera() as camera:
+        camera.resolution(150, 150)
         time.sleep(3)
         camera.capture(photo_path)
 
