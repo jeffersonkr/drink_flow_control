@@ -8,11 +8,15 @@
 			<legend>{{title}}</legend>
 			
 			<div class="body">
-				<label for="name">Nome</label>
-				<input name="name" class="input-huge" type="text" placeholder="Nome completo" value={{ user_name }}>
+				<p>
+					<label for="name">Nome</label>
+					<input name="name" class="input-huge" type="text" placeholder="Nome completo" value={{ user_name }}>
+				</p>
 				{{ error_nome }}
-				<label for="cellphone">Celular</label>
-				<input name="cellphone" class="input-huge" type="tel" placeholder="ex: +5511941040588" value={{ user_cellphone }}>
+				<p>
+					<label for="cellphone">Celular</label>
+					<input name="cellphone" class="input-huge" type="tel" placeholder="ex: +5511941040588" value={{ user_cellphone }}>
+				</p>
 				{% autoescape off %}
 				{{ error_cel }}
 				{% endautoescape %}
