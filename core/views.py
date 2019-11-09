@@ -116,6 +116,6 @@ def take_photo(request, code_number):
         camera.capture(photo_path)
 
     with open(photo_path, 'r') as photo:
-        user.photo.save(f'{user.name}.jpg', photo)
+        user.photo.save('{0}.jpg'.format(user.name), photo)
 
     return redirect(request, 'user', user.id)
