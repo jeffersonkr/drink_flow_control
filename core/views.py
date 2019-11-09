@@ -5,6 +5,7 @@ from django.db import IntegrityError
 from .forms.user_form import UserForm
 from .models.user import User
 import time
+import os
 
 def login(request):
     if request.POST:
@@ -109,7 +110,7 @@ def edit(request, code_number):
 def take_photo(request, code_number):
     from picamera import PiCamera
     user = User.objects.get(code_number=code_number)
-    photo_path = '/home/pi/Pictures/photo_{0}.jpg'.format(user.name)
+    photo_path = '{0}/core/media/photo_{1}.jpg'.format(os.getcwd(), user.name)
     
     with PiCamera() as camera:
         time.sleep(3)
