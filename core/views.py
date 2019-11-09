@@ -109,7 +109,7 @@ def edit(request, code_number):
 def take_photo(request, code_number):
     from picamera import PiCamera
     user = User.objects.get(code_number=code_number)
-    photo_path = '/home/pi/photo_{0}.jpg'.format(user.name)
+    photo_path = '/home/pi/Pictures/photo_{0}.jpg'.format(user.name)
     
     with PiCamera() as camera:
         time.sleep(3)
