@@ -1,6 +1,8 @@
 $(".li_camera").on("click", function(){
-    $(window).css("background-color","#FF0000");
-    setTimeout(function(){
-        $(window).css("background-color","#FFFFFF"); 
-    },800);
+    $('#shutter').addClass('on');
+    setTimeout(function() {
+        $('#shutter').removeClass('on');
+    }, 30*2+45);/* Shutter speed (double & add 45) */
 })
+
+

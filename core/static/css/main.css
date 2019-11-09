@@ -851,6 +851,27 @@ input[type=number] {
 	color: rgba(182, 55, 55, 0.726)
 }
 
+#shutter {
+	opacity: 0;
+	transition: all 30ms ease-in;/* Shutter speed */
+	position: fixed;
+	height: 0%;
+	width: 0%;
+	pointer-events: none;
+  
+	background-color: white;/* Shutter Color */
+	
+	left:50%;
+	top:50%;
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%)
+  }
+  #shutter.on {
+	opacity: 1;/* Shutter Transparency */
+	height: 100%;
+	width: 100%;
+  }
+
 /**********Media Styles**********/   
 
 @media (max-width: 500px){
