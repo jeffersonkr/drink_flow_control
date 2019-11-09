@@ -114,7 +114,6 @@ def take_photo(request, code_number):
     with PiCamera() as camera:
         time.sleep(3)
         camera.capture(photo_path)
-        time.sleep(3)
 
     with open(photo_path, 'rb') as photo:
         user.photo.save('{0}.jpg'.format(user.name), photo)
