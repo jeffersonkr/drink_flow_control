@@ -118,4 +118,4 @@ def take_photo(request, code_number):
     user.photo = photo_path
     user.save()
 
-    return redirect(request, 'user', user.id)
+    return redirect('user', user.id)
