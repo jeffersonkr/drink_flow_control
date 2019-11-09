@@ -9,7 +9,7 @@
 					<div class="cont2">
 						<div class="thumbnail">
 							{% if user_photo %}
-								<img src="/media/{{ 'user_photo' }}"  width="150" heigth="150" alt="{{ user_name }}" class="img-circle">
+								<img src="/media/{{ user_photo }}"  width="150" heigth="150" alt="{{ user_name }}" class="img-circle">
 							{% else %}
 								<img src="{% static 'images/images.jpeg' %}" width="150" heigth="150" alt="{{ user_name }}" class="img-circle">
 							{% endif %}
