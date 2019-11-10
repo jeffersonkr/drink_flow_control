@@ -3,7 +3,7 @@
 {% block body_content %}
 <div class="col-sm-6 col-lg-6 col-lg-offset-3">
 	<div id="register-wraper">
-		<form id="register-form" method="POST" class="form">
+		<form id="register-form" method="POST" class="form"  enctype="multipart/form-data">
 			{% csrf_token %}
 			<legend>{{title}}</legend>
 			
@@ -20,6 +20,12 @@
 				{% autoescape off %}
 				{{ error_cel }}
 				{% endautoescape %}
+				<p>
+					<label for="photo_input">
+						<span id="photo-icon" aria-hidden="true" class="li_camera fs1"></span>
+					</label>
+					<input name="photo" id="photo_input" type="file" accept="image/*" capture="camera" style="display:none;">
+				</p>
 			</div>
 		
 			<div class="footer py-30">

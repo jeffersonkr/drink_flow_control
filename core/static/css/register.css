@@ -159,7 +159,11 @@
 	cursor:pointer
 }
 
-
+#photo-icon {
+  text-align:center;
+  font-size: 32px;
+  color: #b2c831;
+}
 
 
 /* LOGIN PAGE CONFIGURATION  */

@@ -32,13 +32,14 @@ def login(request):
 
 def cadastro(request, code_number):
     if request.POST:
-        form = UserForm(request.POST)
+        form = UserForm(request.POST, request.FILES)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            cellphone = form.cleaned_data['cellphone']
+            name = form.cleaned_data.get('name')
+            cellphone = form.cleaned_data.get('cellphone')
+            photo = form.cleaned_data.get('photo', request.FILES['photo'])
             try:
                 User.objects.create(
-                    name=name, cellphone=cellphone, code_number=code_number).save()
+                    name=name, cellphone=cellphone, code_number=code_number, photo=photo).save()
             except IntegrityError as e:
                 context = {
                     'title': 'Cadastro',
@@ -62,19 +63,6 @@ def cadastro(request, code_number):
 
     return render(request, 'register.html', {'title': 'Cadastrar'})
 
-def user(request, user_id):
-    user = User.objects.get(id=user_id)
-    context = {
-        'title': 'Perfil',
-        'user_name': user.name,
-        'user_cellphone': user.cellphone,
-        'user_created': user.created_at,
-        'user_updated': user.updated_at,
-        'user_code_number': user.code_number,
-        'user_photo': user.photo.split('/')[-1],
-    }
-
-    return render(request, 'user.html', context)
 
 def edit(request, code_number):
     user = User.objects.get(code_number=code_number)
@@ -85,13 +73,16 @@ def edit(request, code_number):
         }
     
     if request.POST:
-        form = UserForm(request.POST)
+        form = UserForm(request.POST, request.FILES)
         if form.is_valid():
             name = form.cleaned_data['name']
             cellphone = form.cleaned_data['cellphone']
+            photo = form.cleaned_data.get('photo', request.FILES['photo'])
+            print(photo)
             try:
                 user.name = name
                 user.cellphone = cellphone
+                user.photo = photo
                 user.save()
             except IntegrityError as e:
                 context = {
@@ -106,20 +97,17 @@ def edit(request, code_number):
 
     return render(request, 'register.html', context)
 
-def take_photo(request, code_number):
-    from picamera import PiCamera
-    from datetime import datetime
 
-    user = User.objects.get(code_number=code_number)
-    photo_path = '{0}/drink_flow_control/core/media/photo_{1}_{2}.jpg'.format(
-                    os.getcwd(), user.name, datetime.now())
-    
-    with PiCamera() as camera:
-        camera.resolution = (150, 150)
-        time.sleep(3)
-        camera.capture(photo_path)
+def user(request, user_id):
+    user = User.objects.get(id=user_id)
+    context = {
+        'title': 'Perfil',
+        'user_name': user.name,
+        'user_cellphone': user.cellphone,
+        'user_created': user.created_at,
+        'user_updated': user.updated_at,
+        'user_code_number': user.code_number,
+        'user_photo': user.photo if user.photo else None,
+    }
 
-    user.photo = photo_path
-    user.save()
-
-    return redirect('user', user.id)
+    return render(request, 'user.html', context)

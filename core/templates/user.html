@@ -9,9 +9,9 @@
 					<div class="cont2">
 						<div class="thumbnail">
 							{% if user_photo %}
-								<img src="/media/{{ user_photo }}"  width="150" heigth="150" alt="{{ user_name }}" class="img-circle">
+								<img src="{{ user_photo.url }}" alt="{{ user_name }}" class="img-circle" style="width: 150px; height:150px;">
 							{% else %}
-								<img src="{% static 'images/images.jpeg' %}" width="150" heigth="150" alt="{{ user_name }}" class="img-circle">
+								<img src="{% static 'images/images.jpeg' %}" alt="{{ user_name }}" class="img-circle" style="width: 150px; height:150px;">
 							{% endif %}
 						</div><!-- /thumbnail -->
 						<h2> {{ user_name }}</h2>
@@ -45,9 +45,6 @@
 						</div>
 					</div>
 					<div class="info-user2">
-						<a href="{% url 'take_photo' user_code_number %}">
-							<span aria-hidden="true" class="li_camera fs1"></span>
-						</a>
 						<a href="{% url 'edit' user_code_number %}">
 							<span aria-hidden="true" class="li_pen fs1"></span>
 						</a>
