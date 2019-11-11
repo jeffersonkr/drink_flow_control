@@ -11,8 +11,20 @@ services:
         networks:
             - home
         depends_on:
-            - "django"
-            - "db"
+            - django
+            - db
+    db:
+        image: tobi312/rpi-mysql
+        container_name: db
+        ports:
+            - '3306:3306'      
+        environment:
+            - MYSQL_DATABASE=drink_db
+            - MYSQL_USER=admin
+            - MYSQL_PASSWORD=drinkwater
+            - MYSQL_ROOT_PASSWORD=drinkwater 
+        networks: 
+            - home
     django:
         build:
             dockerfile: django.dockerfile
@@ -25,21 +37,8 @@ services:
         ports:
             - 8000:8000
         depends_on:
-            - "db"
+            - db
         networks:
-            - "home"
-
-    db:
-        image: tobi312/rpi-mysql
-        container_name: db
-        ports:
-            - '3306:3306'      
-        environment:
-            - MYSQL_DATABASE=drink_db
-            - MYSQL_USER=admin
-            - MYSQL_PASSWORD=drinkwater
-            - MYSQL_ROOT_PASSWORD=drinkwater 
-        networks: 
             - home
   
 networks:
