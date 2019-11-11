@@ -9,7 +9,6 @@ RUN apt-get update && apt-get install -y \
         liblcms1-dev \
         libopenjp2-7 \ 
         libtiff5 \
-        mariadb-server \
         python3-dev 
 RUN pip3 install -r requirements.txt
 EXPOSE 8000
