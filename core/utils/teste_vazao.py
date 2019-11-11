@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 import time
-import datetime
 import sys
 
 FLOW_SENSOR = 40
@@ -11,9 +10,10 @@ global count
 count = 0
 
 def count_pulse(channel):
-   global count
-   count = count+1
-   print(count, datetime.datetime.now() - data_hora)
+    start = time.time()
+    global count
+    count = count+1
+    print(count, start - time.time())
 
 
 GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING, callback=count_pulse)
