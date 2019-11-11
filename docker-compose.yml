@@ -20,8 +20,10 @@ services:
         restart: always
         command: gunicorn drink_flow_control.wsgi:application --bind 0.0.0.0:8000
         container_name: django
+        expose:
+            - '8000'
         ports:
-            - 8080:8000
+            - 8000:8000
         depends_on:
             - "db"
         networks:
@@ -29,6 +31,8 @@ services:
 
     db:
         image: jsurf/rpi-mariadb
+        expose: 
+            - '3306'
         ports:
             - '3306:3306'      
         environment:
