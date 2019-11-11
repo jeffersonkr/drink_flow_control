@@ -24,20 +24,22 @@ class User(models.Model):
             for orientation in ExifTags.TAGS.keys():
                 if ExifTags.TAGS[orientation] == 'Orientation':
                     break
-            if dict(pilImage._getexif()):
-                exif = dict(pilImage._getexif().items())
+            if dict(pilImage._getexif()) is None:
+                return super(User, self).save(*args, **kwargs)
+                
+            exif = dict(pilImage._getexif().items())
 
-                if exif[orientation] == 3:
-                    pilImage = pilImage.rotate(180, expand=True)
-                elif exif[orientation] == 6:
-                    pilImage = pilImage.rotate(270, expand=True)
-                elif exif[orientation] == 8:
-                    pilImage = pilImage.rotate(90, expand=True)
+            if exif[orientation] == 3:
+                pilImage = pilImage.rotate(180, expand=True)
+            elif exif[orientation] == 6:
+                pilImage = pilImage.rotate(270, expand=True)
+            elif exif[orientation] == 8:
+                pilImage = pilImage.rotate(90, expand=True)
 
-                output = BytesIO()
-                pilImage.save(output, format='JPEG', quality=75)
-                output.seek(0)
-                self.photo = File(output, self.photo.name)
+            output = BytesIO()
+            pilImage.save(output, format='JPEG', quality=75)
+            output.seek(0)
+            self.photo = File(output, self.photo.name)
 
         return super(User, self).save(*args, **kwargs)
 
