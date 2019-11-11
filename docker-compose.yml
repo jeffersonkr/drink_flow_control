@@ -22,8 +22,6 @@ services:
                     python3 manage.py migrate && \ 
                     gunicorn drink_flow_control.wsgi:application --bind 0.0.0.0:8000
         container_name: django
-        expose:
-            - '8000'
         ports:
             - 8000:8000
         depends_on:
@@ -32,9 +30,8 @@ services:
             - "home"
 
     db:
-        image: jsurf/rpi-mariadb
-        expose: 
-            - '3306'
+        image: tobi312/rpi-mysql
+        container_name: db
         ports:
             - '3306:3306'      
         environment:
