@@ -17,7 +17,6 @@ def count_pulse(channel):
 
 
 GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING, callback=count_pulse)
-data_hora = datetime.datetime.now()
 while True:
     try:
         time.sleep(1)
