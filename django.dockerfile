@@ -11,5 +11,3 @@ RUN sudo apt-get install libopenjp2-7 -y
 RUN sudo apt-get install libtiff5 -y
 RUN pip3 install -r requirements.txt
 EXPOSE 8000
-CMD python3 manage.py collectstatic --noinput
-CMD python3 manage.py runserver 0.0.0.0:8000 

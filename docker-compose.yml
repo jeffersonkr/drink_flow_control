@@ -18,6 +18,7 @@ services:
             dockerfile: django.dockerfile
             context: .         
         restart: always
+        command: gunicorn drink_flow_control.wsgi:application --bind 0.0.0.0:8000
         container_name: django
         ports:
             - 8080:8000
