@@ -11,7 +11,7 @@ GPIO.setup(FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 def count_pulse(channel):
     # Called if sensor output changes
     timestamp = time.time()
-    stamp = datetime.datetime.fromtimestamp(timestamp).strftime('%H:%M:%S')
+    stamp = datetime.fromtimestamp(timestamp).strftime('%H:%M:%S')
     if GPIO.input(channel):
         # No magnet
         print("Sensor HIGH " + stamp)
