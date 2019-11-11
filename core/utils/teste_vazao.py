@@ -1,17 +1,11 @@
-import RPi.GPIO as GPIO
 import time
-import sys
-from datetime import datetime
+import datetime
+import RPi.GPIO as GPIO
 
-count = 0
-FLOW_SENSOR = 40
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-
-def count_pulse(channel):
+def sensorCallback(channel):
     # Called if sensor output changes
     timestamp = time.time()
-    stamp = datetime.fromtimestamp(timestamp).strftime('%H:%M:%S')
+    stamp = datetime.datetime.fromtimestamp(timestamp).strftime('%H:%M:%S')
     if GPIO.input(channel):
         # No magnet
         print("Sensor HIGH " + stamp)
@@ -19,15 +13,31 @@ def count_pulse(channel):
         # Magnet
         print("Sensor LOW " + stamp)
 
+def main():
+    # Wrap main content in a try block so we can
+    # catch the user pressing CTRL-C and run the
+    # GPIO cleanup function. This will also prevent
+    # the user seeing lots of unnecessary error
+    # messages.
 
-GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING, callback=count_pulse, bouncetime=200)
-while True:
     try:
-        time.sleep(1)
+        # Loop until users quits with CTRL-C
+        while True:
+            time.sleep(0.1)
+
     except KeyboardInterrupt:
-        end = datetime.now()
-        print('\ncaught keyboard interrupt!, bye')
-        total_time = end - start
-        frequency = count/total_time
+        # Reset GPIO settings
         GPIO.cleanup()
-        sys.exit()
+
+# Tell GPIO library to use GPIO references
+GPIO.setmode(GPIO.BOARD)
+
+print("Setup GPIO pin as input on GPIO17")
+
+# Set Switch GPIO as input
+# Pull high by default
+GPIO.setup(40 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.add_event_detect(40, GPIO.BOTH, callback=sensorCallback, bouncetime=200)
+
+if __name__=="__main__":
+    main()
