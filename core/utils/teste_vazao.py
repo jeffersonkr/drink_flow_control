@@ -13,7 +13,8 @@ def count_pulse(channel):
     start = time.time()
     global count
     count = count+1
-    print(count, start - time.time())
+    end = time.time()-start
+    print(count, end)
 
 
 GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING, callback=count_pulse)
