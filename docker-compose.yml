@@ -18,9 +18,9 @@ services:
             dockerfile: django.dockerfile
             context: .         
         restart: always
-        command: bash -c "python manage.py makemigrations && \
-                    python manage.py migrate && \ 
-                    gunicorn drink_flow_control.wsgi:application --bind 0.0.0.0:8000"
+        command: python3 manage.py makemigrations && \
+                    python3 manage.py migrate && \ 
+                    gunicorn drink_flow_control.wsgi:application --bind 0.0.0.0:8000
         container_name: django
         expose:
             - '8000'
