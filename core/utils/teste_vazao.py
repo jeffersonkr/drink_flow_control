@@ -19,15 +19,14 @@ def main():
     # GPIO cleanup function. This will also prevent
     # the user seeing lots of unnecessary error
     # messages.
+    while True:
+        try:
+            pass
 
-    try:
-        # Loop until users quits with CTRL-C
-        while True:
-            time.sleep(0.1)
-
-    except KeyboardInterrupt:
-        # Reset GPIO settings
-        GPIO.cleanup()
+        except KeyboardInterrupt:
+            # Reset GPIO settings
+            GPIO.cleanup()
+            break
 
 # Tell GPIO library to use GPIO references
 GPIO.setmode(GPIO.BOARD)
@@ -37,7 +36,7 @@ print("Setup GPIO pin as input on GPIO17")
 # Set Switch GPIO as input
 # Pull high by default
 GPIO.setup(40 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.add_event_detect(40, GPIO.BOTH, callback=sensorCallback, bouncetime=200)
+GPIO.add_event_detect(40, GPIO.BOTH, callback=sensorCallback, bouncetime=100)
 
 if __name__=="__main__":
     main()
