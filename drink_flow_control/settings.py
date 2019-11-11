@@ -81,11 +81,8 @@ DATABASES = {
         'NAME': 'drink_db',
         'USER': 'admin',
         'PASSWORD': 'drinkwater',
-        'HOST': 'localhost', 
+        'HOST': 'db', 
         'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
     }
 }
 
