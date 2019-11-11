@@ -36,6 +36,7 @@ class User(models.Model):
                     pilImage = pilImage.rotate(90, expand=True)
 
                 output = BytesIO()
+                pilImage.resize((150,150))
                 pilImage.save(output, format='JPEG', quality=75)
                 output.seek(0)
                 self.photo = File(output, self.photo.name)
