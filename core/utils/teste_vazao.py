@@ -20,7 +20,7 @@ def count_pulse(channel):
         print("Sensor LOW " + stamp)
 
 
-GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING, callback=count_pulse)
+GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING, callback=count_pulse, bouncetime=200)
 while True:
     try:
         time.sleep(1)
