@@ -24,9 +24,9 @@ class User(models.Model):
             for orientation in ExifTags.TAGS.keys():
                 if ExifTags.TAGS[orientation] == 'Orientation':
                     break
-            if dict(pilImage._getexif()) is None:
+            if not pilImage._getexif:
                 return super(User, self).save(*args, **kwargs)
-                
+
             exif = dict(pilImage._getexif().items())
 
             if exif[orientation] == 3:
