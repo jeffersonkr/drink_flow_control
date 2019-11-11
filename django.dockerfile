@@ -8,6 +8,6 @@ RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         liblcms1-dev \
         libopenjp2-7 \ 
-        libtiff5 -y
+        libtiff5
 RUN pip3 install -r requirements.txt
 EXPOSE 8000
