@@ -11,3 +11,6 @@ RUN sudo apt-get install libopenjp2-7 -y
 RUN sudo apt-get install libtiff5 -y
 RUN pip3 install -r requirements.txt
 EXPOSE 8000
+CMD python3 manage.py migrate
+CMD python3 manage.py makemigrations
+CMD python3 manage.py migrate
