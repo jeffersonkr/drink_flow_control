@@ -1,4 +1,4 @@
-FROM frankwolf/rpi-python3
+FROM python3.6
 MAINTAINER Jefferson Kwak <jeffersonkr@hotmail.com>
 COPY . /home/pi/www
 WORKDIR /home/pi/www
