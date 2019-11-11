@@ -20,7 +20,7 @@ class User(models.Model):
 
     def save(self, *args, **kwargs):
         if self.photo:
-            pilImage = Img.open(BytesIO(self.image.read()))
+            pilImage = Img.open(BytesIO(self.photo.read()))
             for orientation in ExifTags.TAGS.keys():
                 if ExifTags.TAGS[orientation] == 'Orientation':
                     break
@@ -36,7 +36,7 @@ class User(models.Model):
             output = BytesIO()
             pilImage.save(output, format='JPEG', quality=75)
             output.seek(0)
-            self.image = File(output, self.image.name)
+            self.photo = File(output, self.photo.name)
 
         return super(User, self).save(*args, **kwargs)
 
