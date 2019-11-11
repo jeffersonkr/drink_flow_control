@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
-import time
+import timeit
+from timeit import Timer
 import sys
 
 FLOW_SENSOR = 40
@@ -10,17 +11,17 @@ global count
 count = 0
 
 def count_pulse(channel):
-   global count
+   global count, t
    count = count+1
-   print(count)
+   print(count, t.timeit())
 
 
-GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING, callback=countPulse)
-
+GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING, callback=count_pulse)
+t = Timer()
 while True:
     try:
         time.sleep(1)
     except KeyboardInterrupt:
-        print '\ncaught keyboard interrupt!, bye'
+        print('\ncaught keyboard interrupt!, bye')
         GPIO.cleanup()
         sys.exit()
