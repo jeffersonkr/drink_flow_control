@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'drink_db',
         'USER': 'admin',
         'PASSWORD': 'drinkwater',
-        'HOST': 'db', 
+        'HOST': 'localhost', 
         'PORT': '3306',
     }
 }
