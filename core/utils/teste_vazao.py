@@ -9,7 +9,6 @@ count_per_sec = 0
 FLOW_SENSOR = 40
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING, callback=count_pulse)
 
 def count_pulse(channel):
     global count, start, count_per_sec
@@ -19,6 +18,7 @@ def count_pulse(channel):
         print(count_per_sec)
 
 
+GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING, callback=count_pulse)
 while True:
     try:
         time.sleep(1)
