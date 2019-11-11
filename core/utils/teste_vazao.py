@@ -4,18 +4,20 @@ import sys
 from datetime import datetime
 
 count = 0
-start = datetime.now()
-count_per_sec = 0
 FLOW_SENSOR = 40
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
 def count_pulse(channel):
-    global count, start, count_per_sec
-    count = count+1
-    if datetime.now() - start == 1:
-        count_per_sec += count
-        print(count_per_sec)
+    # Called if sensor output changes
+    timestamp = time.time()
+    stamp = datetime.datetime.fromtimestamp(timestamp).strftime('%H:%M:%S')
+    if GPIO.input(channel):
+        # No magnet
+        print("Sensor HIGH " + stamp)
+    else:
+        # Magnet
+        print("Sensor LOW " + stamp)
 
 
 GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING, callback=count_pulse)
