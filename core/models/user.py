@@ -39,7 +39,7 @@ class User(models.Model):
                 pilImage.save(output, format='JPEG', quality=75)
                 output.seek(0)
                 self.photo = File(output, self.photo.name)
-            except TypeError:
+            except AttributeError:
                 pass
 
         return super(User, self).save(*args, **kwargs)
