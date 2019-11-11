@@ -1,6 +1,10 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, MaxLengthValidator
 from phonenumber_field.modelfields import PhoneNumberField
+from PIL import Image as Img
+from PIL import ExifTags
+from io import BytesIO
+from django.core.files import File
 
 class User(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
@@ -13,6 +17,28 @@ class User(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if self.photo:
+            pilImage = Img.open(BytesIO(self.image.read()))
+            for orientation in ExifTags.TAGS.keys():
+                if ExifTags.TAGS[orientation] == 'Orientation':
+                    break
+            exif = dict(pilImage._getexif().items())
+
+            if exif[orientation] == 3:
+                pilImage = pilImage.rotate(180, expand=True)
+            elif exif[orientation] == 6:
+                pilImage = pilImage.rotate(270, expand=True)
+            elif exif[orientation] == 8:
+                pilImage = pilImage.rotate(90, expand=True)
+
+            output = BytesIO()
+            pilImage.save(output, format='JPEG', quality=75)
+            output.seek(0)
+            self.image = File(output, self.image.name)
+
+        return super(User, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ["name"]
