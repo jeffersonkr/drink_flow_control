@@ -63,7 +63,7 @@ class FlowMeter():
             flow_rate = self._get_flowRate()
             print('Timestamp: %s' % timestamp)
             print('Flow rate: %f' % flow_rate)
-            publish.single("monitoring/", flow_rate, hostname="0.0.0.0", port=1883)
+            publish.single("monitoring/", flow_rate, hostname="localhost", port=1883)
 
             # Delay
             time.sleep(1)
