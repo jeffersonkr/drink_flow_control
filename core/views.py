@@ -37,7 +37,7 @@ def cadastro(request, code_number):
         if form.is_valid():
             name = form.cleaned_data.get('name')
             cellphone = form.cleaned_data.get('cellphone')
-            photo = request.FILES['photo'] if request.FILES['photo'] else None
+            photo = request.FILES.get('photo')
             try:
                 User.objects.create(
                     name=name, cellphone=cellphone, code_number=code_number, photo=photo).save()
