@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'phonenumber_field',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -70,7 +71,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'drink_flow_control.wsgi.application'
-
+ASGI_APPLICATION = 'drink_flow_control.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -79,8 +88,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'drink_db',
-        'USER': 'admin',
-        'PASSWORD': 'drinkwater',
+        'USER': 'root',
+        'PASSWORD': 'drink',
         'HOST': 'localhost', 
         'PORT': '3306',
     }
