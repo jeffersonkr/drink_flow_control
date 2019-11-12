@@ -25,17 +25,13 @@ class MonitoringConsumer(AsyncWebsocketConsumer):
         )
 
     async def receive(self, text_data):
-        hostname = "moquitto"
+        hostname = "0.0.0.0"
         msg = subscribe.simple(
-            topics=f'monitoramento/{self.mac_address}/',
+            topics='monitoramento/',
             retained=False, 
             hostname=hostname,
             port=1883, 
-            keepalive=60, 
-            auth={
-                'username': 'iot-autodoc',
-                'password': 'IOTautodoc19!'
-                }
+            keepalive=60,
             )
         await self.channel_layer.group_send(
             self.monitoring_group_name,
