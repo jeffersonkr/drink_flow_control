@@ -109,6 +109,7 @@ def user(request, user_id):
         'user_updated': user.updated_at,
         'user_code_number': user.code_number,
         'user_photo': user.photo if user.photo else None,
+        'script': "{% static 'js/timer.js' %}",
     }
 
     return render(request, 'user.html', context)
