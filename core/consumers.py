@@ -10,8 +10,8 @@ class MonitoringConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.flow_meter = FlowMeter()
         self.monitoring = threading.Thread(target=self.flow_meter.start_flow_control)
-        self.monitoring.join()
         self.monitoring.start()
+        self.monitoring.join()
         self.monitoring_group_name = 'monitoring_water_flow'
         
         # Join room group
