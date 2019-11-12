@@ -17,7 +17,8 @@ document.querySelector('#set_clock_300').onclick = function(e) {
     setTimeout(setInterval(function(){
         chatSocket.send(JSON.stringify({'message': 'enviado request'}));
     }, 1000), 10000);
-    let user_code = location.href.split('/')[-1]
+    let user_code = window.location.href.split('/')[-1]
+
     $.get("/user/" + user_code + "/OK", function(response) {
         alert(response);
     });
@@ -27,7 +28,7 @@ document.querySelector('#set_clock_1000').onclick = function(e) {
     setTimeout(setInterval(function(){
         chatSocket.send(JSON.stringify({'message': 'enviado request'}));
     }, 1000), 60000);
-    let user_code = location.href.split('/')[-1]
+    let user_code = window.location.href.split('/')[-1]
     $.get("/user/" + user_code + "/OK", function(response) {
         alert(response);
     });
