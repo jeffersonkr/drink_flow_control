@@ -4,14 +4,9 @@ import json
 import subprocess
 import paho.mqtt.subscribe as subscribe
 from .utils.flowmeter import FlowMeter
-import threading
 
 class MonitoringConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.flow_meter = FlowMeter()
-        self.monitoring = threading.Thread(target=self.flow_meter.start_flow_control)
-        self.monitoring.start()
-        self.monitoring.join()
         self.monitoring_group_name = 'monitoring_water_flow'
         
         # Join room group
@@ -23,7 +18,6 @@ class MonitoringConsumer(AsyncWebsocketConsumer):
         await self.accept()
 
     async def disconnect(self, close_code):
-        self.monitoring.stop()
         # Leave room group
         await self.channel_layer.group_discard(
             self.monitoring_group_name,
