@@ -114,6 +114,7 @@ def user(request, user_id):
     return render(request, 'user.html', context)
 
 def start_monitoring(request, user_id):
-    user = User.objects.get(id=user_id)
     flow_meter = FlowMeter()
     flow_meter.start_flow_control()
+    
+    return user(request, user_id)
