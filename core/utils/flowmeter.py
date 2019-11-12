@@ -44,18 +44,18 @@ class FlowMeter():
         ''' Main function for repeatedly collecting flow rate measurements
             and sending them to the SORACOM API
         '''
-    
+
         # Configure GPIO pins
         INPUT_PIN = 40
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(INPUT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    
+
         # Init FlowMeter instance and pulse callback
         GPIO.add_event_detect(INPUT_PIN,
                             GPIO.RISING,
                             callback=self._pulse_callback,
                             bouncetime=20)
-    
+
         # Begin infinite loop
         while True:
             # Get current timestamp and flow meter reading
@@ -67,3 +67,7 @@ class FlowMeter():
 
             # Delay
             time.sleep(1)
+
+if __name__ == "__main__":
+    flow_meter = FlowMeter()
+    flow_meter.start_flow_control()
