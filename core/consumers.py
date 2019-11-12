@@ -6,9 +6,7 @@ import paho.mqtt.subscribe as subscribe
 
 class MonitoringConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.mac_address = self.scope['url_route']['kwargs']['mac_address']
-        self.monitoring_group_name = 'monitoring_%s' % "-".join(self.mac_address.split(':'))
-
+        self.monitoring_group_name = 'monitoring_water_flow'
         # Join room group
         await self.channel_layer.group_add(
             self.monitoring_group_name,
