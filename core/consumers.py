@@ -3,7 +3,6 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 import json
 import subprocess
 import paho.mqtt.subscribe as subscribe
-from .utils.flowmeter import FlowMeter
 
 class MonitoringConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -25,7 +24,7 @@ class MonitoringConsumer(AsyncWebsocketConsumer):
         )
 
     async def receive(self, text_data):
-        hostname = "localhost"
+        hostname = "192.168.10.75"
         msg = subscribe.simple(
             topics='monitoring/',
             retained=False, 
