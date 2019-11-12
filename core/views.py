@@ -116,9 +116,6 @@ def user(request, user_id):
     return render(request, 'user.html', context)
 
 def start_monitoring(request, user_id, qtd_water):
-    flow_meter = FlowMeter()
-    flow_meter.start_flow_control()
-    
     user = User.objects.get(id=user_id)
     context = {
         'title': 'Perfil',
