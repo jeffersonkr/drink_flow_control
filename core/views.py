@@ -103,6 +103,7 @@ def user(request, user_id):
     user = User.objects.get(id=user_id)
     context = {
         'title': 'Perfil',
+        'user_id': user.id,
         'user_name': user.name,
         'user_cellphone': user.cellphone,
         'user_created': user.created_at,
@@ -121,6 +122,7 @@ def start_monitoring(request, user_id, qtd_water):
     user = User.objects.get(id=user_id)
     context = {
         'title': 'Perfil',
+        'user_id': user.id,
         'user_name': user.name,
         'user_cellphone': user.cellphone,
         'user_created': user.created_at,
