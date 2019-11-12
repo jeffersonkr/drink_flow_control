@@ -7,8 +7,6 @@ document.querySelector('#set_clock_300').onclick = function(e){
 
 document.querySelector('#set_clock_1000').onclick = function(e){
     console.log("window.location.href");
-    let user_id = $("#user_id").text();
-    $.get("/user/" + user_id + "/1000", function(response) {
-        console.log(response);
-    });
+    let url = window.location;
+    url.replace(window.location, url + '/1000');
 };
