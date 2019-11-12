@@ -1,5 +1,3 @@
-mac_address = $('select[id=select_mac]').val()
-
 var chatSocket = new WebSocket(
         'ws://' + window.location.host + '/ws/monitoring/');
 
@@ -13,11 +11,24 @@ chatSocket.onmessage = function(e) {
 
 chatSocket.onclose = function(e) {
     console.error('Chat socket closed unexpectedly');
-    fechar o calculo enviar qtd faltante pra banco
 };
 
-document.querySelector('#button_go').onclick = function(e) {
-    setInterval(function(){
+document.querySelector('#set_clock_300').onclick = function(e) {
+    setTimeout(setInterval(function(){
         chatSocket.send(JSON.stringify({'message': 'enviado request'}));
-    }, 1000);
+    }, 1000), 10000);
+    let user_code = location.href.split('/')[-1]
+    $.get("/user/" + user_code + "/OK", function(response) {
+        alert(response);
+    });
+};
+
+document.querySelector('#set_clock_1000').onclick = function(e) {
+    setTimeout(setInterval(function(){
+        chatSocket.send(JSON.stringify({'message': 'enviado request'}));
+    }, 1000), 60000);
+    let user_code = location.href.split('/')[-1]
+    $.get("/user/" + user_code + "/OK", function(response) {
+        alert(response);
+    });
 };
