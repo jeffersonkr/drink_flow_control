@@ -1,30 +1,34 @@
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+var chatSocket = new WebSocket(
+    'ws://' + window.location.host + '/ws/monitoring/');
 
-$('#set_clock_300').on('click', function(){
-    console.log('300ml');
-    setTimeout(async function(){
-        home = (
-            window.location.protocol + 
-            "//" + window.location.host + 
-            "/" + (window.location.href).split("/")[1]);
-        $(".alert").show().fadeTo(3500, 0);
-        await sleep(2500);
-        window.location.replace(home);
-    }, 10000);
-    
- });
+chatSocket.onmessage = function(e) {
+var data = JSON.parse(e.data);
+var message = JSON.parse(data['message']);
+document.querySelector('#qtd_liquido').textContent = message[''];
+document.querySelector('#qtd_faltante').textContent = total - qtd_liquido
+document.querySelector('#qtd_total_diario').textContent = total
+};
 
-$('#set_clock_1000').on('click', function(){
-    console.log('1000ml');
-    setTimeout(async function(){
-        home = (
-            window.location.protocol + 
-            "//" + window.location.host + 
-            "/" + (window.location.href).split("/")[1]);
-        $(".alert").show().fadeTo(3500, 0);
-        await sleep(2500);
-        window.location.replace(home);
-    }, 5000*3.3);
- });
+chatSocket.onclose = function(e) {
+console.error('Chat socket closed unexpectedly');
+};
+
+document.querySelector('#set_clock_300').onclick = function(e) {
+    setTimeout(setInterval(function(){
+        chatSocket.send(JSON.stringify({'message': 'enviado request'}));
+    }, 1000), 10000);
+    let user_code = location.href.split('/')[-1]
+    $.get("/user/" + user_code + "/OK", function(response) {
+        alert(response);
+    });
+};
+
+document.querySelector('#set_clock_1000').onclick = function(e) {
+    setTimeout(setInterval(function(){
+        chatSocket.send(JSON.stringify({'message': 'enviado request'}));
+    }, 1000), 60000);
+    let user_code = location.href.split('/')[-1]
+    $.get("/user/" + user_code + "/OK", function(response) {
+        alert(response);
+    });
+};
