@@ -109,14 +109,14 @@ def user(request, user_id):
         'user_updated': user.updated_at,
         'user_code_number': user.code_number,
         'user_photo': user.photo if user.photo else None,
-        'script': ""
     }
 
     return render(request, 'user.html', context)
 
-def start_monitoring(request, user_id):
+def start_monitoring(request, user_id, qtd_water):
     flow_meter = FlowMeter()
     flow_meter.start_flow_control()
+    
     user = User.objects.get(id=user_id)
     context = {
         'title': 'Perfil',
@@ -126,7 +126,7 @@ def start_monitoring(request, user_id):
         'user_updated': user.updated_at,
         'user_code_number': user.code_number,
         'user_photo': user.photo if user.photo else None,
-        'script': "{% static ''js/timer.js' %}"
+        'script': "{% static 'js/get_monitoring.js' %}",
     }
 
     return render(request, 'user.html', context)
