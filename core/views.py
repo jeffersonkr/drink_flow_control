@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import IntegrityError
 from .forms.user_form import UserForm
 from .models.user import User
+from .utils.flowmeter import FlowMeter
 import time
 import os
 
@@ -111,3 +112,8 @@ def user(request, user_id):
     }
 
     return render(request, 'user.html', context)
+
+def start_monitoring(request, user_id):
+    user = User.objects.get(id=user_id)
+    flow_meter = FlowMeter()
+    flow_meter.start_flow_control()
