@@ -12,6 +12,8 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     photo = models.ImageField(upload_to="user/photo/", null=True, blank=False)
+    total_drunk_today = models.IntegerField(blank=False, null=False, default=0)
+    total_water_per_day = models.IntegerField(blank=False, null=False, default=2000)
     code_number = models.CharField(
         max_length=4, blank=False, null=False, unique=True, validators=[MinLengthValidator(4), MaxLengthValidator(4)])
 
