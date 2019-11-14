@@ -17,6 +17,11 @@ class User(models.Model):
     code_number = models.CharField(
         max_length=4, blank=False, null=False, unique=True, validators=[MinLengthValidator(4), MaxLengthValidator(4)])
 
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name_plural = "Users"
+
     def __str__(self):
         return self.name
 
@@ -47,6 +52,6 @@ class User(models.Model):
 
         return super(User, self).save(*args, **kwargs)
 
-    class Meta:
-        ordering = ["name"]
-        verbose_name_plural = "Users"
+
+    def get_rest_of_water_to_drink(self):
+        return self.total_water_per_day - self.total_drunk_today
