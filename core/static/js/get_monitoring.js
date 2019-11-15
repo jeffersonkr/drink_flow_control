@@ -4,7 +4,7 @@ var chatSocket = new WebSocket(
 chatSocket.onmessage = function(e) {
     var data = JSON.parse(e.data);
     var flowPerMin = JSON.parse(data['message']);
-    var MilliPerSeconds = (parseFloat(flowPerMin)*16.6667).toFixed(3);
+    var MilliPerSeconds = (parseFloat(flowPerMin)*16.6667);
     var last_value;
     console.log($('#qtd_liquido').text())
     if($('#qtd_liquido').text() == ""){
