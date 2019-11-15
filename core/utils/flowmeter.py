@@ -61,8 +61,6 @@ class FlowMeter():
             # Get current timestamp and flow meter reading
             timestamp = str(datetime.now())
             flow_rate = self._get_flowRate()
-            print('Timestamp: %s' % timestamp)
-            print('Flow rate: %f' % flow_rate)
             publish.single("monitoring/", flow_rate, hostname="localhost", port=1883)
 
             # Delay
