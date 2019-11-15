@@ -13,7 +13,13 @@ chatSocket.onmessage = function(e) {
         last_value = parseFloat($('#qtd_liquido').text());
     }
     document.querySelector('#qtd_liquido').textContent = ((last_value + MilliPerSeconds).toFixed(2)).toString();
-    document.querySelector('#qtd_faltante').textContent = parseFloat($('#qtd_total_diario').text()) - parseFloat($('#qtd_liquido').text())
+    document.querySelector('#qtd_faltante').textContent = function(){
+        if(parseFloat($('#qtd_faltante').text()) - parseFloat($('#qtd_liquido').text()) < 0){
+            return 0.0
+        } else {
+            return (parseFloat($('#qtd_faltante').text()) - parseFloat($('#qtd_liquido').text()))
+        };
+    };
     
 };
 

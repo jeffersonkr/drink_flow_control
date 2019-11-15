@@ -111,6 +111,7 @@ def user(request, user_id):
         'user_code_number': user.code_number,
         'user_photo': user.photo if user.photo else None,
         'user_total_agua_diaria': user.total_water_per_day,
+        'user_faltante_agua': user.total_drunk_today,
         'script': "/static/js/timer.js",
     }
 
@@ -128,6 +129,7 @@ def start_monitoring(request, user_id, qtd_water):
         'user_code_number': user.code_number,
         'user_photo': user.photo if user.photo else None,
         'user_total_agua_diaria': user.total_water_per_day,
+        'user_faltante_agua': user.total_drunk_today,
         'script': "/static/js/get_monitoring.js",
     }
 
