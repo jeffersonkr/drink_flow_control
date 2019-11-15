@@ -24,7 +24,7 @@ class MonitoringConsumer(AsyncWebsocketConsumer):
         )
 
     async def receive(self, text_data):
-        hostname = "192.168.10.75"
+        hostname = "localhost"
         msg = subscribe.simple(
             topics='monitoring/',
             retained=False, 
