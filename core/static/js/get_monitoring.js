@@ -4,12 +4,12 @@ var chatSocket = new WebSocket(
 chatSocket.onmessage = function(e) {
     var data = JSON.parse(e.data);
     var flowPerMin = JSON.parse(data['message']);
-    var flowPerSeconds = flowPerMin/60;
+    var flowPerSeconds = parseFloat(flowPerMin)/60;
     var last_value;
-    if($('#qtd_liquido').text != ""){
-        last_value = parseFloat($('#qtd_liquido').text);
-    } else {
+    if($('#qtd_liquido').text == ""){
         last_value = 0.0;
+    } else {
+        last_value = parseFloat($('#qtd_liquido').text);
     }
     document.querySelector('#qtd_liquido').textContent = (last_value + flowPerSeconds).toString();
     //document.querySelector('#qtd_faltante').textContent = total - qtd_liquido
