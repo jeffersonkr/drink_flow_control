@@ -12,9 +12,9 @@ chatSocket.onmessage = function(e) {
     } else {
         last_value = parseFloat($('#qtd_liquido').text());
     }
-    document.querySelector('#qtd_liquido').textContent = (last_value + flowPerSeconds).toString();
-    //document.querySelector('#qtd_faltante').textContent = total - qtd_liquido
-    //document.querySelector('#qtd_total_diario').textContent = total
+    document.querySelector('#qtd_liquido').textContent = ((last_value + flowPerSeconds) * 1000).toString();
+    document.querySelector('#qtd_faltante').textContent = parseFloat($('#qtd_total_diario').text()) - parseFloat($('#qtd_liquido').text())
+    
 };
 
 chatSocket.onclose = function(e) {
