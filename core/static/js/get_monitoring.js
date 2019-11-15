@@ -4,7 +4,7 @@ var chatSocket = new WebSocket(
 chatSocket.onmessage = function(e) {
     var data = JSON.parse(e.data);
     var flowPerMin = JSON.parse(data['message']);
-    var flowPerSeconds = parseFloat(flowPerMin)/60;
+    var MilliPerSeconds = (parseFloat(flowPerMin)*16.6667).toFixed(3);
     var last_value;
     console.log($('#qtd_liquido').text())
     if($('#qtd_liquido').text() == ""){
@@ -12,7 +12,7 @@ chatSocket.onmessage = function(e) {
     } else {
         last_value = parseFloat($('#qtd_liquido').text());
     }
-    document.querySelector('#qtd_liquido').textContent = (last_value + flowPerSeconds).toString();
+    document.querySelector('#qtd_liquido').textContent = (last_value + MilliPerSecond).toString();
     document.querySelector('#qtd_faltante').textContent = parseFloat($('#qtd_total_diario').text()) - parseFloat($('#qtd_liquido').text())
     
 };
