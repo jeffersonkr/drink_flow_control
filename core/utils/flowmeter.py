@@ -54,7 +54,7 @@ class FlowMeter():
         GPIO.add_event_detect(INPUT_PIN,
                             GPIO.RISING,
                             callback=self._pulse_callback,
-                            bouncetime=20)
+                            bouncetime=10)
 
         # Begin infinite loop
         while True:
