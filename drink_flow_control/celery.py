@@ -15,8 +15,3 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 
 # Load task modules from all registered Django app configs.
 app.autodiscover_tasks()
-
-
-@periodic_task(run_every=crontab(hour=7, minute=30, day_of_week="mon"))
-def every_monday_morning():
-    print("This is run every Monday morning at 7:30")
