@@ -6,6 +6,7 @@ chatSocket.onmessage = function(e) {
     var flowPerMin = JSON.parse(data['message']);
     var flowPerSeconds = parseFloat(flowPerMin)/60;
     var last_value;
+    console.log($('#qtd_liquido').text);
     if($('#qtd_liquido').text == ""){
         last_value = 0.0;
     } else {
