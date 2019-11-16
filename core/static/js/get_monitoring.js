@@ -26,7 +26,7 @@ chatSocket.onclose = function(e) {
 };
 
 window.onload = function(e) {
-    setTimeout(setInterval(function(){
+    setInterval(function(){
         chatSocket.send(JSON.stringify({'message': 'enviado request'}));
-    }, 1000), 10000);
+    }, 1000);
 };
