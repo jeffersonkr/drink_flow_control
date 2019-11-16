@@ -1,5 +1,5 @@
 from django.urls import path
-from core.views import user, login, cadastro, edit, start_monitoring
+from core.views import user, login, cadastro, edit, start_monitoring, close_solenoid
 
 urlpatterns = [
     path('', login, name='login'),
