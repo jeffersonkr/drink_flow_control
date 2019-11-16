@@ -142,7 +142,7 @@ def start_monitoring(request, user_id, qtd_water):
     return render(request, 'user.html', context)
 
 def logout(request, user_id, faltante):
-    GPIO.OUTPUT(37, 0)
+    GPIO.output(37, 0)
     user = User.objects.get(id=user_id)
     user.total_drunk_today = faltante
     user.save()
