@@ -10,7 +10,7 @@ import os
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(39, GPIO.OUTPUT)
+GPIO.setup(37, GPIO.OUT)
 
 def login(request):
     if request.POST:
