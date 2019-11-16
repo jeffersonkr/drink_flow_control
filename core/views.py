@@ -123,7 +123,7 @@ def user(request, user_id):
     return render(request, 'user.html', context)
 
 def start_monitoring(request, user_id, qtd_water):
-    GPIO.output(37, 0)
+    GPIO.output(37, 1)
     user = User.objects.get(id=user_id)
     context = {
         'title': 'Perfil',
@@ -143,7 +143,7 @@ def start_monitoring(request, user_id, qtd_water):
     return render(request, 'user.html', context)
 
 def close_solenoid(request, user_id, faltante):
-    GPIO.output(37, 1)
+    GPIO.output(37, 0)
     user = User.objects.get(id=user_id)
     user.total_drunk_today = float(faltante)
     user.save()

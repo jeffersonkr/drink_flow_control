@@ -8,7 +8,8 @@ window.onload = function(e){
 
 function closeSolenoid(){
     site = location.href.split("/").pop();
-    site = site.join("/")
+    console.log(site);
+    site = Array.prototype.slice.call(site).join("/");
     faltante = parseFloat($("#qtd_faltante").text());
     url = site + '/' + faltante;
     console.log(url);
