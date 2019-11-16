@@ -122,7 +122,7 @@ def user(request, user_id):
     return render(request, 'user.html', context)
 
 def start_monitoring(request, user_id, qtd_water):
-    GPIO.OUTPUT(37, 1)
+    GPIO.output(37, 1)
     user = User.objects.get(id=user_id)
     context = {
         'title': 'Perfil',
