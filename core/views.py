@@ -144,7 +144,7 @@ def start_monitoring(request, user_id, qtd_water):
 def close_solenoid(request, user_id, faltante):
     GPIO.output(37, 1)
     user = User.objects.get(id=user_id)
-    user.total_drunk_today = faltante
+    user.total_drunk_today = float(faltante)
     user.save()
 
     return redirect('login')
