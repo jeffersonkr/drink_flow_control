@@ -7,6 +7,10 @@ from .models.user import User
 from .utils.flowmeter import FlowMeter
 import time
 import os
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(39, GPIO.OUTPUT)
 
 def login(request):
     if request.POST:
@@ -112,12 +116,13 @@ def user(request, user_id):
         'user_photo': user.photo if user.photo else None,
         'user_total_agua_diaria': user.total_water_per_day,
         'user_faltante_agua': user.total_drunk_today,
-        'script': "/static/js/timer.js",
+        'script': "/static/js/choose_timer.js",
     }
 
     return render(request, 'user.html', context)
 
 def start_monitoring(request, user_id, qtd_water):
+    GPIO.OUTPUT(37, 1)
     user = User.objects.get(id=user_id)
     context = {
         'title': 'Perfil',
@@ -133,4 +138,13 @@ def start_monitoring(request, user_id, qtd_water):
         'script': "/static/js/get_monitoring.js",
     }
 
+
     return render(request, 'user.html', context)
+
+def logout(request, user_id, faltante):
+    GPIO.OUTPUT(37, 0)
+    user = User.objects.get(id=user_id)
+    user.total_drunk_today = faltante
+    user.save()
+
+    return redirect('login')
