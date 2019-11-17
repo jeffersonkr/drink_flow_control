@@ -1,16 +1,12 @@
-var timer = location.href;
-time = timer.split("/")[this.length - 1];
-console.log(time);
-
 window.onload = function(e){
-    setTimeout(closeSolenoid, parseInt(time)*1000);
+    var timer = location.href.split("/").pop();
+    setTimeout(closeSolenoid, parseInt(timer)*1000);
 };
 
 function closeSolenoid(){
-    site = location.href.split("/").pop();
-    console.log(site);
-    site = Array.prototype.slice.call(site).join("/");
-    faltante = parseFloat($("#qtd_faltante").text());
+    site = location.href.split("/");
+    site.pop();
+    site = site.join("/");
     url = site + '/' + faltante;
     console.log(url);
     $.ajax({
