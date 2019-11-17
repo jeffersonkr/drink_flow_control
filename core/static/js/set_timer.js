@@ -1,5 +1,6 @@
 window.onload = function(e){
     var timer = location.href.split("/").pop();
+    console.log(timer);
     setTimeout(
         function closeSolenoid(){
             var site = location.href.split("/");
@@ -9,6 +10,6 @@ window.onload = function(e){
             url = site + '/' + faltante;
             console.log(url);
             location.replace(url);
-        }, parseInt(timer)*1000);
+        }, parseInt(timer)*100);
 };
 
