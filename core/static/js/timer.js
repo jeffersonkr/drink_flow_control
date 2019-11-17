@@ -9,12 +9,5 @@ function closeSolenoid(){
     site = site.join("/");
     url = site + '/' + faltante;
     console.log(url);
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: data,
-        success: function(data){
-            console.log("solenoide fechado")
-        },
-    });
+    $.get(url);
 };
