@@ -136,7 +136,8 @@ def start_monitoring(request, user_id, qtd_water):
         'user_photo': user.photo if user.photo else None,
         'user_total_agua_diaria': user.total_water_per_day,
         'user_faltante_agua': user.total_drunk_today,
-        'script': "/static/js/get_monitoring.js",
+        'script': "/static/js/set_timer.js",
+        'script_monitoring': "/static/js/get_monitoring.js",
     }
 
 
