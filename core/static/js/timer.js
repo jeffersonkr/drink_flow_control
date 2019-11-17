@@ -4,7 +4,8 @@ window.onload = function(e){
 };
 
 function closeSolenoid(){
-    site = location.href.split("/");
+    var site = location.href.split("/");
+    var faltante = $('#qtd_faltante').text();
     site.pop();
     site = site.join("/");
     url = site + '/' + faltante;
