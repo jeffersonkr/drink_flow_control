@@ -16,7 +16,7 @@ chatSocket.onmessage = function(e) {
     if(parseFloat($('#qtd_faltante').text()) - parseFloat($('#qtd_liquido').text()) < 0){
         document.querySelector('#qtd_faltante').textContent = 0.0
     } else {
-        document.querySelector('#qtd_faltante').textContent = (parseFloat($('#qtd_faltante').text()) - parseFloat($('#qtd_liquido').text()))
+        document.querySelector('#qtd_faltante').textContent = (parseFloat($('#qtd_faltante').text()) - (MilliPerSeconds).toFixed(2))
     };
     
 };
@@ -28,5 +28,5 @@ chatSocket.onclose = function(e) {
 window.onload = function(e) {
     setInterval(function(){
         chatSocket.send(JSON.stringify({'message': 'enviado request'}));
-    }, 1000);
+    }, 100);
 };
