@@ -7,7 +7,7 @@ $(document).ready(function(){
             var faltante = $('#qtd_faltante').text();
             site.pop();
             site = site.join("/");
-            url = site + '/' + faltante;
+            url = site + '/update/' + faltante;
             console.log(url);
             location.replace(url);
         }, parseInt(timer)*100);
