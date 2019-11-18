@@ -24,7 +24,7 @@ class FlowMeter():
        
         # Calculate current flow rate
         hertz = 1 / diff
-        self.flow_rate = hertz / 11
+        self.flow_rate = hertz / 8
        
         # Reset time of last pulse
         self.last_time = current_time
