@@ -64,7 +64,7 @@ class FlowMeter():
             publish.single("monitoring/", flow_rate, hostname="localhost", port=1883)
 
             # Delay
-            time.sleep(1)
+            time.sleep(0.1)
 
 if __name__ == "__main__":
     flow_meter = FlowMeter()
