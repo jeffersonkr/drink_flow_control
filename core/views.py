@@ -11,7 +11,7 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
-GPIO.setup(37, GPIO.OUT)
+GPIO.setup(37, GPIO.OUT, initial=GPIO.HIGH)
 
 def login(request):
     if request.POST:
