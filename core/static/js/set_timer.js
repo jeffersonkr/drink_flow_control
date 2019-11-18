@@ -1,4 +1,4 @@
-document.ready(function(){
+$(document).ready(function(){
     var timer = location.href.split("/").pop();
     console.log(timer);
     setTimeout(
