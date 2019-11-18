@@ -10,6 +10,6 @@ $(document).ready(function(){
             url = site + '/update/' + faltante;
             console.log(url);
             location.replace(url);
-        }, parseInt(timer)*100);
+        }, parseInt(timer)*50);
 });
 
