@@ -4,7 +4,7 @@ var chatSocket = new WebSocket(
 chatSocket.onmessage = function(e) {
     var data = JSON.parse(e.data);
     var flowPerMin = JSON.parse(data['message']);
-    var MilliPerSeconds = (parseFloat(flowPerMin)*16.6667);
+    var MilliPerSeconds = (parseFloat(flowPerMin)*16.67);
     var last_value;
     console.log($('#qtd_liquido').text())
     if($('#qtd_liquido').text() == ""){
@@ -16,7 +16,7 @@ chatSocket.onmessage = function(e) {
     if(parseFloat($('#qtd_faltante').text()) - parseFloat($('#qtd_liquido').text()) < 0){
         document.querySelector('#qtd_faltante').textContent = 0.0
     } else {
-        document.querySelector('#qtd_faltante').textContent = (parseFloat($('#qtd_faltante').text()) - (MilliPerSeconds).toFixed(2))
+        document.querySelector('#qtd_faltante').textContent = (parseFloat($('#qtd_faltante').text()) - MilliPerSeconds.toFixed(2))
     };
     
 };
@@ -28,5 +28,5 @@ chatSocket.onclose = function(e) {
 window.onload = function(e) {
     setInterval(function(){
         chatSocket.send(JSON.stringify({'message': 'enviado request'}));
-    }, 100);
+    }, 1000);
 };
