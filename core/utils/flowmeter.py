@@ -24,7 +24,7 @@ class FlowMeter():
        
         # Calculate current flow rate
         hertz = 1 / diff
-        self.flow_rate = hertz / 8
+        self.flow_rate = hertz / 11
        
         # Reset time of last pulse
         self.last_time = current_time
@@ -64,7 +64,7 @@ class FlowMeter():
             publish.single("monitoring/", flow_rate, hostname="localhost", port=1883)
 
             # Delay
-            time.sleep(0.1)
+            time.sleep(1)
 
 if __name__ == "__main__":
     flow_meter = FlowMeter()

@@ -14,19 +14,20 @@ chatSocket.onmessage = function(e) {
         last_value = parseFloat($('#qtd_liquido').text());
     }
     document.querySelector('#qtd_liquido').textContent = ((last_value + MilliPerSeconds).toFixed(2)).toString();
-    if(parseFloat($('#qtd_liquido').text()) < parseFloat(timer)){
+    if(parseFloat($('#qtd_liquido').text()) >= parseFloat(timer)){
+        var site = location.href.split("/");
+        var faltante = $('#qtd_faltante').text();
+        site.pop();
+        site = site.join("/");
+        url = site + '/update/' + faltante.toString();
+        location.replace(url);
+        
+    } else {
         if(parseFloat($('#qtd_faltante').text()) - parseFloat($('#qtd_liquido').text()) < 0){
             document.querySelector('#qtd_faltante').textContent = 0.0
         } else {
             document.querySelector('#qtd_faltante').textContent = (parseFloat($('#qtd_faltante').text()) - MilliPerSeconds.toFixed(2))
         };
-    } else {
-        var site = location.href.split("/");
-        var faltante = $('#qtd_faltante').text();
-        site.pop();
-        site = site.join("/");
-        url = site + '/update/' + faltante;
-        location.replace(url);
     }
     
     
@@ -39,5 +40,5 @@ chatSocket.onclose = function(e) {
 window.onload = function(e) {
     setInterval(function(){
         chatSocket.send(JSON.stringify({'message': 'enviado request'}));
-    }, 100);
+    }, 1000);
 };
