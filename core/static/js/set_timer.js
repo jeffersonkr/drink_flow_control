@@ -1,4 +1,4 @@
-window.onload = function(e){
+document.ready(function(){
     var timer = location.href.split("/").pop();
     console.log(timer);
     setTimeout(
@@ -11,5 +11,5 @@ window.onload = function(e){
             console.log(url);
             location.replace(url);
         }, parseInt(timer)*100);
-};
+});
 
