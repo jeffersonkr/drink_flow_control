@@ -6,6 +6,7 @@ chatSocket.onmessage = function(e) {
     var flowPerMin = JSON.parse(data['message']);
     var MilliPerSeconds = (parseFloat(flowPerMin)*16.67);
     var last_value;
+    var timer = location.href.split("/").pop();
     console.log($('#qtd_liquido').text())
     if($('#qtd_liquido').text() == ""){
         last_value = 0.0;
@@ -13,11 +14,21 @@ chatSocket.onmessage = function(e) {
         last_value = parseFloat($('#qtd_liquido').text());
     }
     document.querySelector('#qtd_liquido').textContent = ((last_value + MilliPerSeconds).toFixed(2)).toString();
-    if(parseFloat($('#qtd_faltante').text()) - parseFloat($('#qtd_liquido').text()) < 0){
-        document.querySelector('#qtd_faltante').textContent = 0.0
+    if(parseFloat($('#qtd_liquido').text()) < parseFloat(timer)){
+        if(parseFloat($('#qtd_faltante').text()) - parseFloat($('#qtd_liquido').text()) < 0){
+            document.querySelector('#qtd_faltante').textContent = 0.0
+        } else {
+            document.querySelector('#qtd_faltante').textContent = (parseFloat($('#qtd_faltante').text()) - MilliPerSeconds.toFixed(2))
+        };
     } else {
-        document.querySelector('#qtd_faltante').textContent = (parseFloat($('#qtd_faltante').text()) - MilliPerSeconds.toFixed(2))
-    };
+        var site = location.href.split("/");
+        var faltante = $('#qtd_faltante').text();
+        site.pop();
+        site = site.join("/");
+        url = site + '/update/' + faltante;
+        location.replace(url);
+    }
+    
     
 };
 
@@ -28,5 +39,5 @@ chatSocket.onclose = function(e) {
 window.onload = function(e) {
     setInterval(function(){
         chatSocket.send(JSON.stringify({'message': 'enviado request'}));
-    }, 1000);
+    }, 100);
 };
