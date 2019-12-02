@@ -19,7 +19,7 @@ chatSocket.onmessage = function(e) {
     } else {
         document.querySelector('#qtd_faltante').textContent = (parseFloat($('#qtd_faltante').text()) - MilliPerSeconds.toFixed(2))
         if(timer > parseFloat($('#qtd_liquido').text())){
-            if(timer > MilliPerSeconds*2 + parseFloat($('#qtd_liquido').text())){
+            if(timer <= MilliPerSeconds*2 + parseFloat($('#qtd_liquido').text())){
                 var site = location.href.split("/");
                 var faltante = $('#qtd_faltante').text();
                 site.pop();
