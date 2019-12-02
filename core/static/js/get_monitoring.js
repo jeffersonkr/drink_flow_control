@@ -20,8 +20,12 @@ chatSocket.onmessage = function(e) {
         document.querySelector('#qtd_faltante').textContent = (parseFloat($('#qtd_faltante').text()) - MilliPerSeconds.toFixed(2))
         if(timer > timer - parseFloat($('#qtd_liquido').text())){
             if(timer > timer - 2*parseFloat($('#qtd_liquido').text())){
-                let url = location.href;
-                console.log(url);
+                var site = location.href.split("/");
+                var faltante = $('#qtd_faltante').text();
+                site.pop();
+                site = site.join("/");
+                url = site + '/update/' + faltante;
+                location.replace(url);
             }
         }
     };
