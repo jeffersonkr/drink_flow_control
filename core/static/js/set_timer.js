@@ -8,7 +8,6 @@ $(document).ready(function(){
             site.pop();
             site = site.join("/");
             url = site + '/update/' + faltante;
-            console.log(url);
             location.replace(url);
         }, parseInt(timer)*50);
 });
