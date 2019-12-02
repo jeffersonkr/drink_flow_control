@@ -18,9 +18,9 @@ chatSocket.onmessage = function(e) {
         document.querySelector('#qtd_faltante').textContent = 0.0
     } else {
         document.querySelector('#qtd_faltante').textContent = (parseFloat($('#qtd_faltante').text()) - MilliPerSeconds.toFixed(2))
-        if(timer > parseFloat($('#qtd_liquido').text())){
+        if(parseFloat(timer) > parseFloat($('#qtd_liquido').text()) && parseFloat($('#qtd_faltante').text()) > 0 ){
             console.log(MilliPerSeconds);
-            if(timer <= MilliPerSeconds/3 + parseFloat($('#qtd_liquido').text())){
+            if(parseFloat(timer) <= MilliPerSeconds.toFixed(2)/3 + parseFloat($('#qtd_liquido').text()) && parseFloat($('#qtd_faltante').text()) <= 0){
                 var site = location.href.split("/");
                 var faltante = $('#qtd_faltante').text();
                 site.pop();
@@ -28,6 +28,13 @@ chatSocket.onmessage = function(e) {
                 url = site + '/update/' + faltante;
                 location.replace(url);
             }
+        } else if(parseFloat($('#qtd_faltante').text()) <= 0) {
+            var site = location.href.split("/");
+            var faltante = $('#qtd_faltante').text();
+            site.pop();
+            site = site.join("/");
+            url = site + '/update/' + faltante;
+            location.replace(url);
         }
     };
 };
