@@ -16,6 +16,12 @@ chatSocket.onmessage = function(e) {
     document.querySelector('#qtd_liquido').textContent = ((last_value + MilliPerSeconds).toFixed(2)).toString();
     if(parseFloat($('#qtd_faltante').text()) - parseFloat($('#qtd_liquido').text()) < 0){
         document.querySelector('#qtd_faltante').textContent = 0.0
+        var site = location.href.split("/");
+        var faltante = $('#qtd_faltante').text();
+        site.pop();
+        site = site.join("/");
+        url = site + '/update/' + faltante;
+        location.replace(url);
     } else {
         document.querySelector('#qtd_faltante').textContent = (parseFloat($('#qtd_faltante').text()) - MilliPerSeconds.toFixed(2))
         if(parseFloat(timer) > parseFloat($('#qtd_liquido').text()) && parseFloat($('#qtd_faltante').text()) > 0 ){
