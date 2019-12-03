@@ -20,14 +20,26 @@ chatSocket.onmessage = function(e) {
         document.querySelector('#qtd_faltante').textContent = (parseFloat($('#qtd_faltante').text()) - MilliPerSeconds.toFixed(2))
         if(parseFloat(timer) > parseFloat($('#qtd_liquido').text()) && parseFloat($('#qtd_faltante').text()) > 0 ){
             console.log(MilliPerSeconds);
-            if(parseFloat(timer) <= 1.2*MilliPerSeconds.toFixed(2) + parseFloat($('#qtd_liquido').text())){
-                var site = location.href.split("/");
-                var faltante = $('#qtd_faltante').text();
-                site.pop();
-                site = site.join("/");
-                url = site + '/update/' + faltante;
-                location.replace(url);
+            if(MilliPerSeconds < 50){
+                if(parseFloat(timer) <= 1.2*MilliPerSeconds.toFixed(2) + parseFloat($('#qtd_liquido').text())){
+                    var site = location.href.split("/");
+                    var faltante = $('#qtd_faltante').text();
+                    site.pop();
+                    site = site.join("/");
+                    url = site + '/update/' + faltante;
+                    location.replace(url);
+                }
+            } else if(MilliPerSeconds < 100 && MilliPerSeconds > 50){
+                if(parseFloat(timer) <= MilliPerSeconds.toFixed(2)/2 + parseFloat($('#qtd_liquido').text())){
+                    var site = location.href.split("/");
+                    var faltante = $('#qtd_faltante').text();
+                    site.pop();
+                    site = site.join("/");
+                    url = site + '/update/' + faltante;
+                    location.replace(url);
+                }
             }
+            
         } else if(parseFloat(timer) <= parseFloat($('#qtd_liquido').text())){
             var site = location.href.split("/");
             var faltante = $('#qtd_faltante').text();
