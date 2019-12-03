@@ -53,6 +53,15 @@ chatSocket.onmessage = function(e) {
                     url = site + '/update/' + faltante;
                     location.replace(url);
                 }
+            } else if(MilliPerSeconds < 200 && MilliPerSeconds > 150){
+                if(parseFloat(timer) <= MilliPerSeconds.toFixed(2) + parseFloat($('#qtd_liquido').text())){
+                    var site = location.href.split("/");
+                    var faltante = $('#qtd_faltante').text();
+                    site.pop();
+                    site = site.join("/");
+                    url = site + '/update/' + faltante;
+                    location.replace(url);
+                }
             }
             
         } else if(parseFloat(timer) <= parseFloat($('#qtd_liquido').text())){
