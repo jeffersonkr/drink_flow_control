@@ -45,7 +45,7 @@ chatSocket.onmessage = function(e) {
                     location.replace(url);
                 }
             } else if(MilliPerSeconds < 150 && MilliPerSeconds > 100){
-                if(parseFloat(timer) <= MilliPerSeconds.toFixed(2)/1.5 + parseFloat($('#qtd_liquido').text())){
+                if(parseFloat(timer) <= MilliPerSeconds.toFixed(2)/1.2 + parseFloat($('#qtd_liquido').text())){
                     var site = location.href.split("/");
                     var faltante = $('#qtd_faltante').text();
                     site.pop();
