@@ -35,6 +35,13 @@ chatSocket.onmessage = function(e) {
             site = site.join("/");
             url = site + '/update/' + faltante;
             location.replace(url);
+        } else if(parseFloat(timer) <= parseFloat($('#qtd_liquido').text())){
+            var site = location.href.split("/");
+            var faltante = $('#qtd_faltante').text();
+            site.pop();
+            site = site.join("/");
+            url = site + '/update/' + faltante;
+            location.replace(url);
         }
     };
 };
