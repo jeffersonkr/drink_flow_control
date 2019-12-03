@@ -20,7 +20,7 @@ chatSocket.onmessage = function(e) {
         document.querySelector('#qtd_faltante').textContent = (parseFloat($('#qtd_faltante').text()) - MilliPerSeconds.toFixed(2))
         if(parseFloat(timer) > parseFloat($('#qtd_liquido').text()) && parseFloat($('#qtd_faltante').text()) > 0 ){
             console.log(MilliPerSeconds);
-            if(parseFloat(timer) <= 1.5*MilliPerSeconds.toFixed(2) + parseFloat($('#qtd_liquido').text())){
+            if(parseFloat(timer) <= 1.2*MilliPerSeconds.toFixed(2) + parseFloat($('#qtd_liquido').text())){
                 var site = location.href.split("/");
                 var faltante = $('#qtd_faltante').text();
                 site.pop();
@@ -28,14 +28,14 @@ chatSocket.onmessage = function(e) {
                 url = site + '/update/' + faltante;
                 location.replace(url);
             }
-        } else if(parseFloat($('#qtd_faltante').text()) <= 0) {
+        } else if(parseFloat(timer) <= parseFloat($('#qtd_liquido').text())){
             var site = location.href.split("/");
             var faltante = $('#qtd_faltante').text();
             site.pop();
             site = site.join("/");
             url = site + '/update/' + faltante;
             location.replace(url);
-        } else if(parseFloat(timer) <= parseFloat($('#qtd_liquido').text())){
+        } else if(parseFloat($('#qtd_faltante').text()) == 0) {
             var site = location.href.split("/");
             var faltante = $('#qtd_faltante').text();
             site.pop();
